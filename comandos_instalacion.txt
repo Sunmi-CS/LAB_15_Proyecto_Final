@@ -1,0 +1,16 @@
+# Actualizar Ubuntu
+sudo apt update
+
+# Instalar Java, SSH y herramientas necesarias
+sudo apt install openjdk-17-jdk ssh pdsh -y
+
+# Comprobar Java
+java -version
+
+# Configurar JAVA_HOME
+export JAVA_HOME=(dirname"(dirname "(readlink-f"(which java)")")")
+echo JAVAHOME#GenerarclaveSSHssh-keygen-trsa#ConfiguraraccesoSSHlocaltouch~/.ssh/authorizedkeyscat~/.ssh/idrsa.pub>>~/.ssh/authorizedkeyschmod700~/.sshchmod600~/.ssh/authorizedkeys#IniciarSSHsudoservicesshstart#DescargarHadoop3.5.0wgethttps://downloads.apache.org/hadoop/common/hadoop-3.5.0/hadoop-3.5.0.tar.gz#DescomprimirHadooptar-xzfhadoop-3.5.0.tar.gz#DefinirvariablesdeentornoparalasesiónactualexportHADOOPHOME="HOME/hadoop-3.5.0"
+export PATH="PATH:HADOOP_HOME/bin:$HADOOP_HOME/sbin"
+
+# Comprobar Hadoop
+hadoop version

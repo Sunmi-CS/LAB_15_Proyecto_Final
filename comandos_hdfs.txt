@@ -1,0 +1,22 @@
+# Crear directorios en HDFS
+hdfs dfs -mkdir -p /semma/entrada
+hdfs dfs -mkdir -p /semma/modificado
+
+# Subir dataset original
+hdfs dfs -put ~/proyecto_semma/hour.csv /semma/entrada/
+
+# Subir dataset limpio
+hdfs dfs -put -f ~/proyecto_semma/hour_limpio.csv /semma/modificado/
+
+# Listar archivos
+hdfs dfs -ls /semma/entrada
+hdfs dfs -ls /semma/modificado
+
+# Consultar las primeras filas
+hdfs dfs -cat /semma/entrada/hour.csv | head -5
+
+# Contar líneas del archivo
+hdfs dfs -cat /semma/entrada/hour.csv | wc -l
+
+# Inspeccionar bloques de HDFS
+hdfs fsck /semma/entrada/hour.csv -files -blocks -locations

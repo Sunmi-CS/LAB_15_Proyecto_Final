@@ -1,0 +1,23 @@
+# Verificar cantidad de horas procesadas
+hdfs dfs -cat /semma/modelo/part-00000 | wc -l
+
+# Sumar alquileres obtenidos por MapReduce
+hdfs dfs -cat /semma/modelo/part-00000 |
+awk -F '\t' '{s+=$2} END {print "Total de alquileres:", s}'
+
+# Obtener el total del CSV limpio
+python3 - <<'PY'
+import csv
+
+with open("hour_limpio.csv", newline="", encoding="utf-8") as f:
+    total = sum(int(fila["cnt"]) for fila in csv.DictReader(f))
+
+print("Total de alquileres del CSV limpio:", total)
+PY
+
+# Mostrar las cinco horas con mayor demanda
+hdfs dfs -cat /semma/modelo/part-00000 |
+sort -k2,2nr | head -5
+
+# Comprobar servicios activos de Hadoop
+jps
